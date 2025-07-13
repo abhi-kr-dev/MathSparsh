@@ -1,0 +1,10 @@
+{% extends 'admin/base_site.html' %}
+{% block content %}
+  <h1>Bulk Upload Questions, Solutions, Options, Answer Keys, Images</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="default">Upload</button>
+  </form>
+  <p style="margin-top:20px; color: #666;">Upload a CSV, Excel, or Word file with your questions, solutions, options, and answer keys. Optionally, upload a ZIP file of images referenced by filename.</p>
+{% endblock %}
