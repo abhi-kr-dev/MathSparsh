@@ -213,12 +213,26 @@ function Dashboard() {
         </div>
       )}
       {user && user.role === 'free' && (
-        <div className="mb-4 bg-yellow-50 border border-yellow-200 rounded p-4 w-full max-w-md text-center">
-              } else {
-                alert('Could not start payment.');
-              }
-            }}
-          >Go Premium</button>
+  <div className="mb-4 bg-yellow-50 border border-yellow-200 rounded p-4 w-full max-w-md text-center">
+    <div className="font-bold mb-2">Free User</div>
+    <div>Upgrade to premium for unlimited access and advanced features!</div>
+    <button
+      className="mt-4 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
+      onClick={async () => {
+        const res = await fetch('/api/create-stripe-checkout/', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${localStorage.getItem('access')}` }
+        });
+        const data = await res.json();
+        if (data.checkout_url) {
+          window.location.href = data.checkout_url;
+        } else {
+          alert('Could not start payment.');
+        }
+      }}
+    >Go Premium</button>
+  </div>
+)
         </div>
       )}
       <div className="mt-8 text-gray-500">More dashboard features coming soon.</div>
