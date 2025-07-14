@@ -4,6 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import { BarChart, TopUsersTable } from './AdminCharts';
 
 function Dashboard() {
+  // State declarations
+  const [user, setUser] = useState(null);
+  const [analytics, setAnalytics] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+
+  // Fetch user on mount
+  useEffect(() => {
+    fetchUser()
+      .then(setUser)
+      .catch(() => setError('Could not fetch user'));
+  }, []);
   // Accessibility: focus skip link
   useEffect(() => {
     const skip = document.getElementById('skip-to-content');
@@ -88,7 +102,7 @@ function Dashboard() {
         }>
           {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
         </span>
-        {user.email_verified ? (
+        {user && user.email_verified ? (
           <span className="ml-2 bg-green-100 text-green-800 px-2 py-1 rounded text-xs mt-1">Email Verified</span>
         ) : (
           <span className="ml-2 bg-gray-200 text-gray-800 px-2 py-1 rounded text-xs mt-1">Email Not Verified</span>
@@ -96,7 +110,7 @@ function Dashboard() {
         {/* Phone number update */}
         <PhoneNumberSection user={user} />
       </div>
-      {!user.email_verified && (
+      {user && !user.email_verified && (
         <div className="my-4 bg-yellow-100 border border-yellow-300 text-yellow-800 px-4 py-2 rounded text-center">
           Please verify your email to unlock all features. <br/>
           <a href="/dashboard" className="underline text-blue-700">Resend verification from registration page if needed.</a>
@@ -126,7 +140,7 @@ function Dashboard() {
           </div>
         </div>
       )}
-      {user.role === 'admin' && analytics && (
+      {user && user.role === 'admin' && analytics && (
         <div>
           <a href="#admin-analytics-section" id="skip-to-analytics" className="skip-link absolute left-2 top-16 bg-yellow-300 text-black px-3 py-1 rounded z-50 focus:translate-y-0 -translate-y-12 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition">Skip to analytics</a>
           <section id="admin-analytics-section" tabIndex={-1} className="w-full max-w-5xl mt-10 outline-none" aria-label="Admin Analytics" aria-live="polite">
@@ -188,7 +202,7 @@ function Dashboard() {
             <BarChart title="Attempts" data={analytics.attempts_per_day} color="bg-green-400" />
         </div>
       )}
-      {user.role === 'premium' && (
+      {user && user.role === 'premium' && (
         <div className="mb-4 bg-green-50 border border-green-200 rounded p-4 w-full max-w-md text-center">
           <div className="font-bold mb-2">Premium Features</div>
           <ul className="list-disc list-inside text-left">
@@ -198,20 +212,8 @@ function Dashboard() {
           </ul>
         </div>
       )}
-      {user.role === 'free' && (
+      {user && user.role === 'free' && (
         <div className="mb-4 bg-yellow-50 border border-yellow-200 rounded p-4 w-full max-w-md text-center">
-          <div className="font-bold mb-2">Free User</div>
-          <div>Upgrade to premium for unlimited access and advanced features!</div>
-          <button
-            className="mt-4 bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"
-            onClick={async () => {
-              const res = await fetch('http://localhost:8000/api/create-stripe-checkout/', {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${localStorage.getItem('access')}` }
-              });
-              const data = await res.json();
-              if (data.checkout_url) {
-                window.location.href = data.checkout_url;
               } else {
                 alert('Could not start payment.');
               }

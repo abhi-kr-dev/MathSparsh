@@ -24,6 +24,7 @@ function Home() {
   return (
     <>
       <a href="#main-home-content" id="skip-to-home-content" className="skip-link absolute left-2 top-2 bg-yellow-300 text-black px-3 py-1 rounded z-50 focus:translate-y-0 -translate-y-12 focus:outline-none focus:ring-2 focus:ring-yellow-500 transition">Skip to main content</a>
+      <div className="mt-6 text-xl font-semibold text-blue-700">Welcome to the new MathSparsh homepage!</div>
       <main id="main-home-content" tabIndex={-1} className="min-h-screen bg-gray-50 flex flex-col items-center" aria-label="Homepage main content">
         {settings.logo && (
           <img src={settings.logo} alt={settings.site_name ? settings.site_name + ' logo' : 'Site logo'} className="h-24 mt-8 mb-4" />
