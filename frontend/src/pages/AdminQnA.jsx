@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../utils/api';
-import { useAuth } from '../utils/auth';
+import axios from 'axios';
 
 const AdminQnA = () => {
-  const { user, isAuthenticated } = useAuth();
+  // TODO: Add authentication logic or props for user/isAuthenticated
+const user = null;
+const isAuthenticated = false;
   const [pending, setPending] = useState([]);
   const [selected, setSelected] = useState(null);
   const [answer, setAnswer] = useState('');
