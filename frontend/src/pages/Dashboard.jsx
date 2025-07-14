@@ -148,46 +148,41 @@ function Dashboard() {
                   Export CSV
                 </button>
               </div>
-              <div className="text-sm text-gray-600 mb-2">Site usage summary and recent attempts</div>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
-                <div className="bg-white rounded p-2" aria-label="Users" role="definition">Users: {analytics.total_users}</div>
-                <div className="bg-white rounded p-2" aria-label="Questions" role="definition">Questions: {analytics.total_questions}</div>
-                <div className="bg-white rounded p-2" aria-label="Attempts" role="definition">Attempts: {analytics.total_attempts}</div>
-                <div className="bg-white rounded p-2" aria-label="Premium" role="definition">Premium: {analytics.top_users_by_attempts?.filter(u=>u.role==='premium').length ?? 0}</div>
-              </div>
-              <div className="flex flex-col md:flex-row gap-6 justify-center mb-6">
-                <BarChart title="Signups" data={analytics.signups_per_day} color="bg-blue-400" aria-label="Signups Chart" role="img" />
-                <BarChart title="Attempts" data={analytics.attempts_per_day} color="bg-green-400" aria-label="Attempts Chart" role="img" />
-                <BarChart title="Premium Upgrades" data={analytics.premium_per_day} color="bg-purple-400" aria-label="Premium Upgrades Chart" role="img" />
             </div>
-            <div className="text-sm text-gray-600 mb-2">Site usage summary and recent attempts</div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
-              <div className="bg-white rounded p-2" aria-label="Users" role="definition">Users: {analytics.total_users}</div>
-              <div className="bg-white rounded p-2" aria-label="Questions" role="definition">Questions: {analytics.total_questions}</div>
-              <div className="bg-white rounded p-2" aria-label="Attempts" role="definition">Attempts: {analytics.total_attempts}</div>
-              <div className="bg-white rounded p-2" aria-label="Premium" role="definition">Premium: {analytics.top_users_by_attempts?.filter(u=>u.role==='premium').length ?? 0}</div>
-            </div>
-            <div className="flex flex-col md:flex-row gap-6 justify-center mb-6">
-              <BarChart title="Signups" data={analytics.signups_per_day} color="bg-blue-400" aria-label="Signups Chart" role="img" />
-              <BarChart title="Attempts" data={analytics.attempts_per_day} color="bg-green-400" aria-label="Attempts Chart" role="img" />
-              <BarChart title="Premium Upgrades" data={analytics.premium_per_day} color="bg-purple-400" aria-label="Premium Upgrades Chart" role="img" />
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <TopUsersTable title="Top Users by Attempts" users={analytics.top_users_by_attempts} field="attempts" aria-label="Top Users by Attempts Table" role="table" />
-              <TopUsersTable title="Top Users by Correct" users={analytics.top_users_by_correct} field="correct" aria-label="Top Users by Correct Table" role="table" />
-            </div>
-            <div className="overflow-x-auto mt-6">
-              <div className="font-semibold mb-1">Recent Attempts</div>
-              <table className="w-full text-xs mt-2" aria-label="Recent Attempts Table" role="table">
-                <thead>
-                  <tr className="bg-blue-100">
-                    <th className="px-2 py-1" scope="col">User</th>
-                    <th className="px-2 py-1" scope="col">Question</th>
-                    <th className="px-2 py-1" scope="col">Correct</th>
-                    <th className="px-2 py-1" scope="col">Time</th>
-            <div className="bg-white rounded p-2">Attempts: {analytics.total_attempts}</div>
-            <div className="bg-white rounded p-2">Premium: {analytics.top_users_by_attempts?.filter(u=>u.role==='premium').length ?? 0}</div>
-          </div>
+          </section>
+        </div>
+      )}
+      <div className="text-sm text-gray-600 mb-2">Site usage summary and recent attempts</div>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 mb-4">
+        <div className="bg-white rounded p-2" aria-label="Users" role="definition">Users: {analytics.total_users}</div>
+        <div className="bg-white rounded p-2" aria-label="Questions" role="definition">Questions: {analytics.total_questions}</div>
+        <div className="bg-white rounded p-2" aria-label="Attempts" role="definition">Attempts: {analytics.total_attempts}</div>
+        <div className="bg-white rounded p-2" aria-label="Premium" role="definition">Premium: {analytics.top_users_by_attempts?.filter(u=>u.role==='premium').length ?? 0}</div>
+      </div>
+      <div className="flex flex-col md:flex-row gap-6 justify-center mb-6">
+        <BarChart title="Signups" data={analytics.signups_per_day} color="bg-blue-400" aria-label="Signups Chart" role="img" />
+        <BarChart title="Attempts" data={analytics.attempts_per_day} color="bg-green-400" aria-label="Attempts Chart" role="img" />
+        <BarChart title="Premium Upgrades" data={analytics.premium_per_day} color="bg-purple-400" aria-label="Premium Upgrades Chart" role="img" />
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <TopUsersTable title="Top Users by Attempts" users={analytics.top_users_by_attempts} field="attempts" aria-label="Top Users by Attempts Table" role="table" />
+        <TopUsersTable title="Top Users by Correct" users={analytics.top_users_by_correct} field="correct" aria-label="Top Users by Correct Table" role="table" />
+      </div>
+      <div className="overflow-x-auto mt-6">
+        <div className="font-semibold mb-1">Recent Attempts</div>
+        <table className="w-full text-xs mt-2" aria-label="Recent Attempts Table" role="table">
+          <thead>
+            <tr className="bg-blue-100">
+              <th className="px-2 py-1" scope="col">User</th>
+              <th className="px-2 py-1" scope="col">Question</th>
+              <th className="px-2 py-1" scope="col">Correct</th>
+              <th className="px-2 py-1" scope="col">Time</th>
+            </tr>
+          </thead>
+          {/* Table body and other content here */}
+        </table>
+      </div>
+              <div className="bg-white rounded p-2">Premium: {analytics.top_users_by_attempts?.filter(u=>u.role==='premium').length ?? 0}</div>
           <div className="flex flex-col md:flex-row gap-6 justify-center mb-6">
             <BarChart title="Signups" data={analytics.signups_per_day} color="bg-blue-400" />
             <BarChart title="Attempts" data={analytics.attempts_per_day} color="bg-green-400" />
@@ -229,6 +224,7 @@ function Dashboard() {
   );
 }
 
+// PhoneNumberSection must be defined outside Dashboard and not inside any other function/component
 function PhoneNumberSection({ user }) {
   const [editing, setEditing] = React.useState(false);
   const [phone, setPhone] = React.useState(user.phone_number || '');
