@@ -32,7 +32,7 @@ STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY', 'pk_test_...')
 STRIPE_PRICE_ID = os.environ.get('STRIPE_PRICE_ID', 'price_...')  # Set your Stripe price ID here
 FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mathsparsh.onrender.com']
 
 
 # Application definition
