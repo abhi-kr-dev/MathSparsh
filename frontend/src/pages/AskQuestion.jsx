@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from '../utils/api';
+import axios from 'axios';
 
 const MAX_FREE_QUESTIONS = 3;
 

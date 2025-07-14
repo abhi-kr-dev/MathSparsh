@@ -214,12 +214,6 @@ function Dashboard() {
                   <th className="px-2 py-1" scope="col">Correct</th>
                   <th className="px-2 py-1" scope="col">Time</th>
                 </tr>
-              </thead>
-              {/* Table body and other content here */}
-            </table>
-          </div>
-        </div>
-      )}
       {user && user.role === 'premium' && (
         <div className="mb-4 bg-green-50 border border-green-200 rounded p-4 w-full max-w-md text-center">
           <div className="font-bold mb-2">Premium Features</div>
