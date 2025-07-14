@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from '../utils/api';
+import axios from 'axios';
 import { Helmet } from 'react-helmet';
 
 const QnADetail = () => {
