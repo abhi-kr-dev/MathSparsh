@@ -232,8 +232,7 @@ function Dashboard() {
       }}
     >Go Premium</button>
   </div>
-)
-        </div>
+
       )}
       <div className="mt-8 text-gray-500">More dashboard features coming soon.</div>
     </div>
