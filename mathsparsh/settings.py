@@ -32,7 +32,14 @@ STRIPE_PUBLISHABLE_KEY = os.environ.get('STRIPE_PUBLISHABLE_KEY', 'pk_test_...')
 STRIPE_PRICE_ID = os.environ.get('STRIPE_PRICE_ID', 'price_...')  # Set your Stripe price ID here
 FRONTEND_URL = os.environ.get('FRONTEND_URL', 'http://localhost:3000')
 
-ALLOWED_HOSTS = ['mathsparsh.onrender.com']
+ALLOWED_HOSTS = ['mathsparsh.onrender.com', 'mathsparsh.com', 'www.mathsparsh.com']
+
+CORS_ALLOWED_ORIGINS = [
+    "https://mathsparsh.com",
+    "https://www.mathsparsh.com",
+    "https://eclectic-haupia-66b8cb.netlify.app"
+]
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
@@ -46,6 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'ckeditor',
     'ckeditor_uploader',
     'core',
@@ -79,6 +87,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
