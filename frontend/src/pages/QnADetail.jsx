@@ -13,7 +13,8 @@ const QnADetail = () => {
     const fetchQnA = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`/public-questions/${id}/`);
+        const BASE_URL = import.meta.env.VITE_API_URL || '';
+        const res = await axios.get(`${BASE_URL}/public-questions/${id}/`);
         setQuestion(res.data);
       } catch (err) {
         setError('Failed to load question.');

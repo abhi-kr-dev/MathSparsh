@@ -18,7 +18,8 @@ const isAuthenticated = false;
     const fetchPending = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('/public-questions/?status=pending');
+        const BASE_URL = import.meta.env.VITE_API_URL || '';
+    const res = await axios.get(`${BASE_URL}/public-questions/?status=pending`);
         setPending(res.data);
       } catch (err) {
         setError('Failed to load pending questions.');
@@ -50,7 +51,8 @@ const isAuthenticated = false;
       const formData = new FormData();
       formData.append('answer_text', answer);
       if (image) formData.append('answer_image', image);
-      await axios.post(`/public-questions/${selected.id}/answer/`, formData, {
+      const BASE_URL = import.meta.env.VITE_API_URL || '';
+    await axios.post(`${BASE_URL}/public-questions/${selected.id}/answer/`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setSuccess('Solution posted!');

@@ -13,7 +13,8 @@ const QnAList = () => {
     const fetchQuestions = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('/public-questions/?status=answered');
+        const BASE_URL = import.meta.env.VITE_API_URL || '';
+      const res = await axios.get(`${BASE_URL}/public-questions/?status=answered`);
         setQuestions(res.data);
         setFiltered(res.data);
       } catch (err) {

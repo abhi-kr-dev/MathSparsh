@@ -7,7 +7,8 @@ function ResendVerification({ email }) {
   const resend = async () => {
     setLoading(true);
     setStatus('');
-    const res = await fetch('http://localhost:8000/api/resend-verification/', {
+    const BASE_URL = import.meta.env.VITE_API_URL || '';
+    const res = await fetch(`${BASE_URL}/api/resend-verification/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email }),

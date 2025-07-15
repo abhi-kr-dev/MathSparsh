@@ -14,7 +14,8 @@ function PhoneNumberSection({ user }) {
     setLoading(true);
     setStatus(null);
     try {
-      const res = await fetch('/api/user/update/', {
+      const BASE_URL = import.meta.env.VITE_API_URL || '';
+      const res = await fetch(`${BASE_URL}/api/user/update/`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

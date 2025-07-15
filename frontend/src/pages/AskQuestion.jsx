@@ -44,7 +44,8 @@ const AskQuestion = () => {
       formData.append('text', text);
       if (image) formData.append('image', image);
       if (!isAuthenticated) formData.append('session_id', sessionId);
-      await axios.post('/public-questions/', formData, {
+      const BASE_URL = import.meta.env.VITE_API_URL || '';
+    await axios.post(`${BASE_URL}/public-questions/`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setSuccess('Your question was submitted! You will see a solution here once answered.');
